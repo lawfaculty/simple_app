@@ -12,8 +12,6 @@ from collections import OrderedDict
 from .pyre_sseclient import SSEClient
 import threading
 import socket
-from oauth2client.service_account import ServiceAccountCredentials
-from gcloud import storage
 from uuid import uuid4
 
 def initialize_app(config):
@@ -29,17 +27,23 @@ class Firebase:
         self.storage_bucket = config["storageBucket"]
         self.credentials = None
         self.requests = requests.Session()
-        if config.get("serviceAccount"):
-            scopes = [
-                'https://www.googleapis.com/auth/firebase.database',
-                'https://www.googleapis.com/auth/userinfo.email',
-                "https://www.googleapis.com/auth/cloud-platform"
-            ]
-            service_account_type = type(config["serviceAccount"])
-            if service_account_type is str:
-                self.credentials = ServiceAccountCredentials.from_json_keyfile_name(config["serviceAccount"], scopes)
-            if service_account_type is dict:
-                self.credentials = ServiceAccountCredentials.from_json_keyfile_dict(config["serviceAccount"], scopes)
+        # if config.get("serviceAccount"):
+        #     scopes = [
+        #         'https://www.googleapis.com/auth/firebase.database',
+        #         'https://www.googleapis.com/auth/userinfo.email',
+        #         "https://www.googleapis.com/auth/cloud-platform"
+        #     ]
+        #     service_account_type = type(config["serviceAccount"])
+        #     if service_account_type is str:
+        #         self.credentials = ServiceAccountCredentials.from_json_keyfile_name(config["serviceAccount"], scopes)
+        #     if service_account_type is dict:
+        #         self.credentials = ServiceAccountCredentials.from_json_keyfile_dict(config["serviceAccount"], scopes)
+        # if is_appengine_sandbox():
+            # Fix error in standard GAE environment
+            # is releated to https://github.com/kennethreitz/requests/issues/3187
+            # ProtocolError('Connection aborted.', error(13, 'Permission denied'))
+        #     adapter = appengine.AppEngineAdapter(max_retries=3)
+        # else:
         adapter = HTTPAdapter()
 
         for scheme in ('http://', 'https://'):
@@ -418,9 +422,9 @@ class Storage:
         self.credentials = credentials
         self.requests = requests
         self.path = ""
-        if credentials:
-            client = storage.Client(credentials=credentials, project=storage_bucket)
-            self.bucket = client.get_bucket(storage_bucket)
+        # if credentials:
+        #     client = storage.Client(credentials=credentials, project=storage_bucket)
+        #     self.bucket = client.get_bucket(storage_bucket)
 
     def child(self, *args):
         new_path = "/".join(args)
