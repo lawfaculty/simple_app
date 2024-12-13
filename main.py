@@ -2,8 +2,10 @@ from kivymd.app import MDApp
 from views.main_view import MainView
 from kivy.lang import Builder
 import os
-import bidi.algorithm
-import arabic_reshaper
+import libraries.utils.arabic_reshaper as arabic_reshaper
+from libraries.utils.bidi import algorithm
+# import bidi.algorithm
+# import arabic_reshaper
 from kivy.core.window import Window
 # from kivymd.utils.set_bars_colors import set_bars_colors
 # from kvdroid.tools import change_statusbar_color
@@ -21,7 +23,7 @@ class GroceryApp(MDApp):
         return MainView()
 
     def ar(self,text=""):
-        text = bidi.algorithm.get_display(arabic_reshaper.reshape(text))
+        text = algorithm.get_display(arabic_reshaper.reshape(text))
         return text
     
 if __name__ == '__main__':

@@ -5,6 +5,11 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.core.window import Window
 from kivy.uix.textinput import TextInput
+# import bidi.algorithm
+# import arabic_reshaper
+import libraries.utils.arabic_reshaper as arabic_reshaper
+from libraries.utils.bidi import algorithm
+
 class Product(ButtonBehavior,MDBoxLayout):
     id             = NumericProperty()
     name           = StringProperty("")
@@ -99,9 +104,7 @@ class OrderDetail(ButtonBehavior,MDBoxLayout):
     product_quantity = NumericProperty()
 
 def ar(text):
-    import bidi.algorithm
-    import arabic_reshaper
-    text = bidi.algorithm.get_display(arabic_reshaper.reshape(text))
+    text = algorithm.get_display(arabic_reshaper.reshape(text))
     return text
 
 class InputBox(TextInput):
