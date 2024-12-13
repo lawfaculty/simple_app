@@ -1,4 +1,3 @@
-import json
 from services.json_crud import save_json, load_json
 class User:
     def __init__(self):

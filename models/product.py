@@ -1,11 +1,7 @@
-import json, threading
-from queue import Queue
 from datetime import datetime
 from services.firebase_service import FirebaseService
-from controllers.auth_controller import AuthController
 from datetime import datetime
 import pytz
-from zoneinfo import ZoneInfo
 from services.json_crud import save_json, load_json
 class Product:
     def __init__(self, name, description, price, category_id, image_url):

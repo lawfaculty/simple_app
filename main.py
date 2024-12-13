@@ -6,7 +6,7 @@ import bidi.algorithm
 import arabic_reshaper
 from kivy.core.window import Window
 # from kivymd.utils.set_bars_colors import set_bars_colors
-# from kvdroid.tools import change_statusbar_color
+from kvdroid.tools import change_statusbar_color
 
 class GroceryApp(MDApp):
     def build(self):
@@ -14,7 +14,7 @@ class GroceryApp(MDApp):
         # Window.left = 1140
         # Window.top = 40
         Window.clearcolor = (1,1,1,1)
-        # change_statusbar_color('#12aa4b',"white")
+        change_statusbar_color('#12aa4b',"white")
         # set_bars_colors("#12aa4b",(1,1,1,1),"white")
         Builder.load_file(os.path.join(os.getcwd(), "kv/widgets.kv"))
         Builder.load_file(os.path.join(os.getcwd(), "kv/kivy.kv"))
