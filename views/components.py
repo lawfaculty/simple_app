@@ -8,7 +8,8 @@ from kivy.uix.textinput import TextInput
 # import bidi.algorithm
 # import arabic_reshaper
 import libraries.utils.arabic_reshaper as arabic_reshaper
-from libraries.utils.bidi import algorithm
+import libraries.utils.bidi.algorithm as algorithm
+
 
 class Product(ButtonBehavior,MDBoxLayout):
     id             = NumericProperty()

@@ -3,7 +3,8 @@ from views.main_view import MainView
 from kivy.lang import Builder
 import os
 import libraries.utils.arabic_reshaper as arabic_reshaper
-from libraries.utils.bidi import algorithm
+import libraries.utils.bidi.algorithm as algorithm
+
 # import bidi.algorithm
 # import arabic_reshaper
 from kivy.core.window import Window
